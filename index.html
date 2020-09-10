@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>MY BANK</title>
+
+    <link rel="stylesheet" href="/vendor/framework7/css/framework7.bundle.min.css">
+    <link rel="stylesheet" href="/vendor/css/app.css">
+    <link rel="stylesheet" href="/assets/css/styleae52.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.png">
+
+</head>
+
+<body>
+
+    <!-- innitiate app -->
+    <div id="app">
+
+        <div class="view view-main">
+
+            <div class="page">
+
+                <div class="navbar">
+                    <div class="navbar-bg"></div>
+
+                    <div class="navbar-inner dark">
+                        <div class="left"></div>
+                        <div class="title" style="color:white;">SELECT YOUR BANK</div>
+
+                        <div class="right"></div>
+                    </div>
+                    <div class="subnavbar dark">
+                        <form data-search-container=".virtual-list" data-search-item="li" data-search-in=".item-title"
+                            class="searchbar searchbar-init">
+                            <div class="searchbar-inner">
+                                <div class="searchbar-input-wrap">
+                                    <input type="search" placeholder="Search Bank" />
+                                    <i class="searchbar-icon"></i>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                                <span class="searchbar-disable-button if-not-aurora" style="color:white;">Cancel</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="searchbar-backdrop"></div>
+                <div class="page-content">
+                    <div class="section wallet-card-section pt-1">
+
+                        <!-- <div class="wallet-card list media-list inset">
+                            <ul>
+                                <li>
+                                    <a href="#" class="item-link item-content">
+                                        <div class="item-media"><img
+                                                src="https://cdn.framework7.io/placeholder/fashion-88x88-4.jpg"
+                                                width="44" /></div>
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">Yellow Submarine</div>
+                                            </div>
+                                            <div class="item-subtitle">Beatles</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="item-link item-content">
+                                        <div class="item-media"><img
+                                                src="https://cdn.framework7.io/placeholder/fashion-88x88-5.jpg"
+                                                width="44" /></div>
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">Don't Stop Me Now</div>
+                                            </div>
+                                            <div class="item-subtitle">Queen</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="item-link item-content">
+                                        <div class="item-media"><img
+                                                src="https://cdn.framework7.io/placeholder/fashion-88x88-6.jpg"
+                                                width="44" /></div>
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">Billie Jean</div>
+                                            </div>
+                                            <div class="item-subtitle">Michael Jackson</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div> -->
+                        <div class="list  media-list inset color searchbar-not-found">
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media"><img
+                                                src="/assets/img/bank.jpg"
+                                                width="22" /></div>
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">No such bank found!</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="list virtual-list media-list inset color searchbar-found">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="/vendor/framework7/js/framework7.bundle.min.js"></script>
+    <script src="/vendor/js/routes.js"></script>
+    <script src="/vendor/js/my-functions.js"></script>
+    <script src="/vendor/js/app.js"></script>
+</body>
+
+</html>

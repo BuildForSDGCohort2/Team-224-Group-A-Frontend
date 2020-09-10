@@ -1,0 +1,73 @@
+body{
+    font-family: 'Lucida Sans',
+    'Lucida Sans Regular',
+    'Lucida Grande',
+    'Lucida Sans Unicode',
+    Geneva,
+    Verdana,
+    sans-serif !important;
+}
+
+.loader .link{
+    color: greenyellow;
+}
+
+.loader .turn_white {
+    color: white;
+}
+
+.navbar .dark{
+    background-color: #000000 !important;
+}
+
+.loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    background: #6236FF;
+    display: block;
+    align-items: center;
+    /* justify-content: center; */
+    max-height: 97%;
+}
+
+.color{
+    background: #6236FF !important;
+    color: #000000;
+}
+.select_bank{
+    top: 20%;
+}
+
+.next{
+    top:25%;
+}
+
+/* .pull-up{
+    top: 130px;
+    bottom: 1px;
+} 
+
+.pull{
+    top:-10px;
+}
+
+*/
+
+.title{
+    font-size: 20px !important;
+    bottom: -5px !important;
+}
+
+.subnavbar input[type="search"] {
+    border-radius: 2px;
+    border: 0px;
+    left: 0px !important;
+}
+
+.bank_list{
+    background-color: #ffffff !important;
+}
