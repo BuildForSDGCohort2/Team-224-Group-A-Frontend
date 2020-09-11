@@ -2,8 +2,8 @@
 
 var $$ = Dom7;
 
-const api_url = "http://192.168.0.120/my_bank/";
-const api_public = "http://192.168.0.120/my_bank/images/";
+const api_url = "http://localhost/my_bank/";
+const api_public = "http://localhost/my_bank/images/";
 const api_key = "bmuzoora@gmail.com";
 const app_version = "1.0.0";
 
