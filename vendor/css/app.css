@@ -9,9 +9,9 @@ body {
     src: url("../fonts/Framework7Icons-Regular.eot");
     src: local('Framework7 Icons'),
        local('Framework7Icons-Regular'),
-       url("../framework7-icons/fonts/Framework7Icons-Regular.woff2") format("woff2"),
-       url("../framework7-icons/fonts/Framework7Icons-Regular.woff") format("woff"),
-       url("../framework7-icons/fonts/Framework7Icons-Regular.ttf") format("truetype");
+       url("../icons/fonts/Framework7Icons-Regular.woff2") format("woff2"),
+       url("../icons/fonts/Framework7Icons-Regular.woff") format("woff"),
+       url("../icons/fonts/Framework7Icons-Regular.ttf") format("truetype");
   }
   
   .f7-icons, .framework7-icons {
