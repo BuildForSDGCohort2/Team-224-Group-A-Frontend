@@ -12,6 +12,7 @@ body {
 
 .navbar .dark {
     background-color: #000000 !important;
+    color: #ffffff !important;
 }
 
 .loader {
@@ -52,7 +53,7 @@ body {
 
 */
 
-.title {
+.title, .left {
     font-size: 20px !important;
     bottom: -5px !important;
 }

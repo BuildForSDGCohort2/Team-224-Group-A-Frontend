@@ -35,7 +35,7 @@ function get_bank_list_for_select() {
                         }
                         return found; //return array with mathced indexes
                     },
-                    // List item Template7 template
+                    // List item Template7 template 
                     itemTemplate: `
                                 <li>
                                     <a href="#" onclick="confirm_bank(this.id)" class="item-link item-content" id="{{id}}">
@@ -112,9 +112,15 @@ function confirm_bank(bank_id) {
 
             },
             {
-                text: 'Continue',
+                text: 'Continue <i class="fas fa-arrow-alt-circle-right"></i>',
                 onClick: () => {
                     console.log("Clicked Continue")
+                    // open popup
+                    var swipeToClosePopup = app.popup.create({
+                        el: '.bank_pin',
+                        swipeToClose: true,
+                      });
+                      swipeToClosePopup.open();
                 }
             }
         ],
