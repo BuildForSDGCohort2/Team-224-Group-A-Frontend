@@ -174,7 +174,7 @@ function confirm_bank(bank_id) {
                                 <div class="col-80">
                                     <div class="form-group basic animated">
                                         <div class="input-wrapper">
-                                            <input type="password" class="form-control"
+                                            <input type="password" pattern="[0-9]{4}" class="form-control"
                                                 id="bank_pin" name="bank_pin"
                                                 placeholder="PIN">
                                             <span class="input-clear-button"></span>
