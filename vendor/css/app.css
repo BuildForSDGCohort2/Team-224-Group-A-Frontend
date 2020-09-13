@@ -48,6 +48,12 @@ body {
     color: #ffffff !important;
 }
 
+.bank_entry form {
+    margin-right:-20px;
+    margin-left:-25px;
+    margin-bottom:-15px;
+}
+
 .loader {
     position: fixed;
     left: 0;

@@ -93,6 +93,9 @@ function app_countries() {
                         count_list += `
                         <li id="${country_data[c].id}" onclick="select_country(this.id)">
                             <a href="#">
+                            <input type="hidden" name="country_id" value="${country_data[c].id}">
+                            <input type="hidden" name="country_name" value="${country_data[c].country_name}">
+                            <input type="hidden" name="country_code" value="${country_data[c].country_code}">
                                 <span>${country_data[c].country_name} (<em>${country_data[c].country_code}</em>)</span>                                
                                 ${code}
                             </a>
@@ -130,8 +133,13 @@ function app_countries() {
 // set default country for app
 function select_country(country_id) {
     app.preloader.show("#6236FF");
-    // console.log("Selected country", country_id);
     var show_data = $$('.show_countries');
+    
+    // save selected country
+    var country_d = app.form.convertToData('#'+country_id);
+    // console.log("Selected country", country_d);
+    localStorage.setItem("selected_country", JSON.stringify(country_d));
+
 
     // get bank details
     app.request.promise.post(api_url + "get-bank-list.php", {
@@ -205,7 +213,6 @@ function select_country(country_id) {
 // get bank list from database
 function get_bank_list_for_select() {
 
-
     console.log("Running on", app.device.os, "version", app.device.osVersion);
 }
 
@@ -258,10 +265,12 @@ function confirm_bank(bank_id) {
 
                     // show bank details data
 
+                    var country_d = JSON.parse(localStorage.getItem("selected_country"));
+
                     var template = ` <div class="col-12 mb-2">
-                    <div class="bill-box">
+                    <div class="bill-box bank_entry">
                     
-                        <form style="margin-top:-10px;" id="confirm_bank_info">
+                        <form style="margin-top:-10px;" id="confirm_bank_info" autocomplete="off">
 
                             <div class="row">
                                 <div class="col-20">
@@ -274,10 +283,10 @@ function confirm_bank(bank_id) {
                                         <div class="input-wrapper">
                                             <div class="row">
                                                 <div class="col-30">
-                                                    <input type="number" style="margin-right:-15px !important;" class="form-control" name="country_code" readonly value="256">
+                                                    <input type="text" style="margin-right:-15px !important;" class="form-control" name="country_code" readonly value="${country_d.country_code}">
                                                 </div>
                                                 <div class="col-70">
-                                                    <input onfocus="show_infor()" type="number" style="margin-left:-20px;" class="form-control" name="phone_number"
+                                                    <input onclick="show_infor()" type="tel" style="margin-left:-20px;" class="form-control" name="phone_number"
                                                     placeholder="Phone Number" maxlength="10">
                                                     <span class="input-clear-button"></span>
                                                 </div>
@@ -304,6 +313,7 @@ function confirm_bank(bank_id) {
                                 </div>
 
                                 <textarea style="display:none;" name="selected_bank_data">${JSON.stringify(bank_details)}</textarea>
+                                <textarea style="display:none;" name="selected_country_data">${JSON.stringify(country_d)}</textarea>
 
                                 <div class="col-20">
                                     <i style="margin-top:25px;"
@@ -378,6 +388,17 @@ function submit_bank_info() {
             text: 'Phone Number Is Required!',
             closeTimeout: 9000,
         }).open();
+    }
+    else if (!Number.isSafeInteger(parseInt(phone_number))) {
+
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'Invalid Phone.',
+            titleRightText: 'now',
+            subtitle: '',
+            text: 'Enter a valid Phone Number (Only Numbers)!',
+            closeTimeout: 9000,
+        }).open();
     } else if (phone_number.length < 9) {
 
         app.notification.create({
@@ -385,7 +406,7 @@ function submit_bank_info() {
             title: 'Invalid Phone Length',
             titleRightText: 'now',
             subtitle: '',
-            text: 'Enter a valid phone number!',
+            text: 'Enter a valid phone number (9 digits)!',
             closeTimeout: 9000,
         }).open();
     } else if (phone_number.length > 9) {
@@ -423,7 +444,7 @@ function submit_bank_info() {
             title: 'Invalid PIN length',
             titleRightText: 'now',
             subtitle: '',
-            text: 'PIN Length must be 4!',
+            text: 'PIN Length must be exactly 4!',
             closeTimeout: 9000,
         }).open();
     } else if (new_app_pin != confirm_new_app_pin) {
@@ -433,11 +454,13 @@ function submit_bank_info() {
             title: 'PIN Miss match',
             titleRightText: 'now',
             subtitle: '',
-            text: 'Please Confirm Your PIN!',
+            text: 'PINs donot match! Enter the exact APP PINs please.',
             closeTimeout: 9000,
         }).open();
     } else {
         console.log("Bank Data", bank_details);
+
+
     }
 
 
