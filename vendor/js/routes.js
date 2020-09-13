@@ -1,6 +1,7 @@
 "use strict"
 
-var routes = [{
+var routes = [
+    {
         name: "index",
         path: "/index/",
         url: "/index.html",
@@ -10,6 +11,16 @@ var routes = [{
                 app.preloader.hide();
             }
         },
+    },
+    {
+        name: "Get Started",
+        path: "/first-time/",
+        url: "/pages/first_time/index.html",
+        on: {
+            pageInit: function(){
+                app_countries();
+            }
+        }
     },
     {
         name: "home",

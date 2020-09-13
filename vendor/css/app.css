@@ -67,6 +67,13 @@ body {
     color: #000000;
 }
 
+.country{
+    background-color: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
 .select_bank {
     top: 20%;
 }

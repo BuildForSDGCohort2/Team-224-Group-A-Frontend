@@ -1331,9 +1331,8 @@ a.badge-dark {
     color: #27173E !important
 }
 
-.link-listview>li a:after {
-    content: "\f3d1";
-    font-family: "Ionicons";
+/* .link-listview>li a:after {
+    font-family: "Framework7 Icons";
     font-size: 18px;
     position: absolute;
     right: 16px;
@@ -1343,7 +1342,7 @@ a.badge-dark {
     line-height: 1em;
     color: #A9ABAD;
     opacity: 0.6
-}
+} */
 
 .link-listview>li a:active {
     background: rgba(220, 220, 233, 0.3)
