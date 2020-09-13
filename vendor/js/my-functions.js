@@ -224,8 +224,8 @@ function confirm_bank(bank_id) {
     console.log("Bank Data", bank_details);
 
     app.dialog.create({
-        title: "<img src='" + bank_details.bank_logo + "' style='border-radius:100%; width=55px;'/><br/>" + bank_details.bank_name,
-        text: 'Continue With ' + bank_details.bank_name,
+        title: "<center><img src='" + bank_details.bank_logo + "' style='border-radius:100%; width=55px;'/><br/>" + bank_details.bank_name+"</center>",
+        text: '<center>Continue With ' + bank_details.bank_name + "</center>",
         buttons: [{
                 text: '<i class="f7-icons">delete_left_fill</i>',
                 onClick: () => {
@@ -283,6 +283,7 @@ function confirm_bank(bank_id) {
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -344,13 +345,16 @@ function confirm_bank(bank_id) {
 
 }
 
-function show_infor(){
+function show_infor() {
     var bank_details = app.form.convertToData('#confirm_bank_info');
     var bank_name = JSON.parse(bank_details.selected_bank_data);
 
-    app.toast.create({
-        text: 'Enter Number You Registered for Mobile Banking With '+bank_name.bank_name,
-        position: 'top',
+    app.notification.create({
+        icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+        title: 'MY BANK Message.',
+        titleRightText: 'now',
+        subtitle: '',
+        text: 'Enter Number You Registered for Mobile Banking With ' + bank_name.bank_name,
         closeTimeout: 9000,
     }).open();
 
@@ -364,42 +368,75 @@ function submit_bank_info() {
     var new_app_pin = bank_details.new_app_pin;
     var confirm_new_app_pin = bank_details.confirm_new_app_pin;
 
-    if (phone_number == ""){
-        app.toast.create({
+    if (phone_number == "") {
+
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'Empty Field.',
+            titleRightText: 'now',
+            subtitle: '',
             text: 'Phone Number Is Required!',
-            position: 'bottom',
             closeTimeout: 9000,
         }).open();
-    }
-    else if (phone_number.length <9 ) {
-        app.toast.create({
+    } else if (phone_number.length < 9) {
+
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'Invalid Phone Length',
+            titleRightText: 'now',
+            subtitle: '',
             text: 'Enter a valid phone number!',
-            position: 'bottom',
             closeTimeout: 9000,
         }).open();
-    }
-    else if (new_app_pin == "") {
-        app.toast.create({
+    } else if (phone_number.length > 9) {
+
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'Invalid Phone Length',
+            titleRightText: 'now',
+            subtitle: '',
+            text: 'Enter a valid phone number!',
+            closeTimeout: 9000,
+        }).open();
+    } else if (new_app_pin == "") {
+
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'Empty Field.',
+            titleRightText: 'now',
+            subtitle: '',
             text: 'Set Your App PIN please!',
-            position: 'bottom',
             closeTimeout: 9000,
         }).open();
-    }
-    else if (new_app_pin.length < 4) {
-        app.toast.create({
+    } else if (new_app_pin.length < 4) {
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'Invalid PIN length',
+            titleRightText: 'now',
+            subtitle: '',
             text: 'PIN Length must be 4!',
-            position: 'bottom',
             closeTimeout: 9000,
         }).open();
-    }
-    else if (new_app_pin != confirm_new_app_pin) {
-        app.toast.create({
+    } else if (new_app_pin.length > 4) {
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'Invalid PIN length',
+            titleRightText: 'now',
+            subtitle: '',
+            text: 'PIN Length must be 4!',
+            closeTimeout: 9000,
+        }).open();
+    } else if (new_app_pin != confirm_new_app_pin) {
+
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'PIN Miss match',
+            titleRightText: 'now',
+            subtitle: '',
             text: 'Please Confirm Your PIN!',
-            position: 'bottom',
             closeTimeout: 9000,
         }).open();
-    }
-    else{
+    } else {
         console.log("Bank Data", bank_details);
     }
 

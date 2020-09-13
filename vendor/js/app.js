@@ -13,7 +13,7 @@ var app = new Framework7({
     root: "#app",
     name: "My Bank",
     id: "com.sdg.bank",
-    theme: "ios",
+    theme: "auto",
     routes: routes,
     touch: {
         tapHold: true //enable tap hold events
@@ -41,3 +41,8 @@ var mainView = app.views.create(".view-main", {
         }
     }
 });
+
+// tap and hold
+app.on('taphold', function(e) {
+    console.log("Tap and hold works", e)
+})
