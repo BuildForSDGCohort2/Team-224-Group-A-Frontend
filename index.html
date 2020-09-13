@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#2196f3">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
     <title>MY BANK</title>
 
     <link rel="stylesheet" href="vendor/framework7/css/framework7.bundle.min.css">
@@ -20,88 +24,113 @@
 
     <!-- innitiate app -->
     <div id="app">
-
         <div class="view view-main">
 
             <div class="page">
 
-                <div class="navbar">
-                    <div class="navbar-bg"></div>
+                <div class="appBottomMenu no-hairline toolbar tabbar tabbar-labels toolbar-bottom"
+                   >
+                   <div class="toolbar-inner">
+                       <a href="#login" class="tab-link tab-link-active">
+                            <i class="icon f7-icons if-not-md">person_crop_circle_badge_checkmark</i>
+                            <span class="tabbar-label"><strong>Not First Time</strong></span>
+                       </a>
+                       <a href="#register" class="tab-link" onclick="app_countries()">
+                           <i class="icon f7-icons if-not-md">person_crop_circle_badge_plus</i>
+                           <span class="tabbar-label"><strong>My First Time</strong></span>
+                       </a>
 
-                    <div class="navbar-inner dark">
-                        <div class="left"></div>
-                        <div class="title" style="color:white;">SELECT YOUR BANK</div>
-
-                        <div class="right"></div>
-                    </div>
-                    <div class="subnavbar dark">
-                        <form data-search-container=".virtual-list" data-search-item="li" data-search-in=".item-title"
-                            class="searchbar searchbar-init">
-                            <div class="searchbar-inner">
-                                <div class="searchbar-input-wrap">
-                                    <input type="search" placeholder="Search Bank" />
-                                    <i class="searchbar-icon"></i>
-                                    <span class="input-clear-button"></span>
-                                </div>
-                                <span class="searchbar-disable-button if-not-aurora" style="color:white;">Cancel</span>
-                            </div>
-                        </form>
-                    </div>
+                   </div>
+                    
                 </div>
 
-                <div class="searchbar-backdrop"></div>
-                <div class="page-content">
-                    <div class="section wallet-card-section pt-1">
+                <!-- <div class="searchbar-backdrop"></div> -->
+                <div class="tabs">
+                    <div id="login" class="page-content tab tab-active">
 
-                        <div class="list  media-list inset color searchbar-not-found">
-                            <ul>
-                                <li>
-                                    <div class="item-content">
-                                        <div class="item-media"><img src="/assets/img/bank.jpg" width="22" /></div>
-                                        <div class="item-inner">
-                                            <div class="item-title-row">
-                                                <div class="item-title">No such bank found!</div>
-                                            </div>
-                                        </div>
+                        <div class="block">
+
+                            <div class="section">
+                                <div class="splash-page mt-5 mb-5">
+                                    <div class="mb-3">
+                                        <i style="font-size:112px;"
+                                            class="f7-icons">person_crop_circle_badge_checkmark</i>
                                     </div>
+                                    <h2 class="mb-2">Enter APP Pin</h2>
+                                </div>
+                            </div>
+
+                            <center>
+                                <div class="form-group basic animated">
+                                    <div class="input-wrapper">
+                                        <input type="password" pattern="[0-9]{4}"
+                                            class="form-control verification-input" name="bank_pin" placeholder="••••"
+                                            id="smscode" maxlength="4">
+                                    </div>
+                                </div>
+                            </center>
+
+                            <div class="section">
+                                <div class="splash-page mt-5 mb-5">
+                                    <div class="mb-3">
+                                        <a type="submit" style="font-size:25px; border:1px solid; padding: 5px;border-radius: 5px;">LOGIN
+                                            <i style="font-size:28px;" class="f7-icons">chevron_right_square_fil</i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>                          
+                            
+
+                        </div>
+
+                    </div>
+
+                    <div id="register" class="page-content tab">
+
+                        <div class="block">
+
+                            <div class="section">
+                                <div class="splash-page mt-5 mb-5">
+                                    <div class="mb-3">
+                                        <i style="font-size:112px;"
+                                            class="f7-icons">person_crop_circle_badge_plus</i>
+                                    </div>
+                                    <h2 class="mb-2">Hello Dear Customer!</h2>
+
+                                    <h4 class="mb-2" id="show_title">Select Your Country!</h4>
+                                    
+                                </div>
+                            </div>
+
+
+                            <!-- <ul class="listview link-listview inset show_bank_list" style="max-height: 300px; overflow-y: auto;">
+                                <li>
+                                    <a href="#">
+                                        Loading Available Banks
+                                        <span>
+                                            <div class="preloader"></div>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul> -->
+
+                            <ul class="listview link-listview inset show_countries"
+                                style="max-height: 300px; overflow-y: auto;">
+                                <li>
+                                    <a href="#">
+                                        Loading Countries
+                                        <span>
+                                            <div class="preloader"></div>
+                                        </span>
+                                    </a>
                                 </li>
                             </ul>
+
+
                         </div>
-                        <div class="list virtual-list media-list inset color searchbar-found">
-                        </div>
+
                     </div>
-                </div>
-            </div>
 
-            <!-- enter app password -->
-            <div class="popup bank_pin" data-close-on-escape="true" data-swipe-to-close="to-bottom">
-
-                <div class="view">
-                    <div class="page">
-                        <div class="navbar">
-                            <div class="navbar-bg"></div>
-                            <div class="navbar-inner dark">
-                                <div class="left"><!-- Link to close popup -->
-                                    <a class="link popup-close"> <i class="f7-icons">arrow_left</i> </a></div>
-                                <div class="title">LOGIN</div>
-                                <div class="right">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="page-content">
-
-                            <div class="section wallet-card-section pt-1">
-                                <div class="card">
-                                    <div class="card-content card-content-padding show_bank_info">
-
-                                       Loading details...
-                                       
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
 
             </div>
@@ -109,7 +138,6 @@
         </div>
 
     </div>
-
 
     <script src="/vendor/framework7/js/framework7.bundle.min.js"></script>
     <script src="/vendor/js/routes.js"></script>
