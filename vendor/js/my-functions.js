@@ -62,6 +62,8 @@ function get_app_details() {
 
 // get countries
 function app_countries() {
+    $$("#show_title").html("Select Your Country To Continue!");
+    
     app.request.promise.post(api_url + "get-countries.php", {
             api_key: api_key
         })
@@ -473,14 +475,27 @@ function submit_bank_info() {
                     text: 'Not Now',
                     onClick: () => {    
                         console.log("Declined");
+
+                        app.notification.create({
+                            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+                            title: 'Registration Process Stopped',
+                            titleRightText: 'now',
+                            subtitle: '',
+                            text: 'Click LOGIN if you already registered your account with this app. Or Register to continue!',
+                            closeTimeout: 9000,
+                        }).open();
+
+
                     },
                     close: true,
     
                 },
                 {
-                    text: '<b>Confirm</b>',
+                    text: '<b>I Confirm</b>',
                     onClick: () => {                         
                         console.log("Accepted");
+
+
                     }
                 }
             ],
