@@ -134,9 +134,9 @@ function app_countries() {
 function select_country(country_id) {
     app.preloader.show("#6236FF");
     var show_data = $$('.show_countries');
-    
+
     // save selected country
-    var country_d = app.form.convertToData('#'+country_id);
+    var country_d = app.form.convertToData('#' + country_id);
     // console.log("Selected country", country_d);
     localStorage.setItem("selected_country", JSON.stringify(country_d));
 
@@ -231,7 +231,7 @@ function confirm_bank(bank_id) {
     console.log("Bank Data", bank_details);
 
     app.dialog.create({
-        title: "<center><img src='" + bank_details.bank_logo + "' style='border-radius:100%; width=55px;'/><br/>" + bank_details.bank_name+"</center>",
+        title: "<center><img src='" + bank_details.bank_logo + "' style='border-radius:100%; width=55px;'/><br/>" + bank_details.bank_name + "</center>",
         text: '<center>Continue With ' + bank_details.bank_name + "</center>",
         buttons: [{
                 text: '<i class="f7-icons">delete_left_fill</i>',
@@ -388,8 +388,7 @@ function submit_bank_info() {
             text: 'Phone Number Is Required!',
             closeTimeout: 9000,
         }).open();
-    }
-    else if (!Number.isSafeInteger(parseInt(phone_number))) {
+    } else if (!Number.isSafeInteger(parseInt(phone_number))) {
 
         app.notification.create({
             icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
@@ -459,6 +458,36 @@ function submit_bank_info() {
         }).open();
     } else {
         console.log("Bank Data", bank_details);
+        // create users account, register default app
+
+        var phone_number = bank_details.phone_number;
+        var new_app_pin = bank_details.new_app_pin;
+        var confirm_new_app_pin = bank_details.confirm_new_app_pin;
+        var bank_name = JSON.parse(bank_details.selected_bank_data);
+
+        // show confirmable alert
+        app.dialog.create({
+            title: "<center>Confirm Action</center>",
+            text: '<center>Register '+bank_name.bank_name+' as a default account?</center>',
+            buttons: [{
+                    text: 'Not Now',
+                    onClick: () => {    
+                        console.log("Declined");
+                    },
+                    close: true,
+    
+                },
+                {
+                    text: '<b>Confirm</b>',
+                    onClick: () => {                         
+                        console.log("Accepted");
+                    }
+                }
+            ],
+            verticalButtons: false,
+        }).open();
+
+
 
 
     }
