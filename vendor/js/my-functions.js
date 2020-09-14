@@ -339,6 +339,8 @@ function confirm_bank(bank_id) {
                                     <i style="font-size:15px; color:green;" class="f7-icons">checkmark_seal_fill</i>
                                 </a>
 
+                            <button type="reset" style="display:none;" id="reset_form">reset</button>
+
                         </form>
                     </div>
                 </div>`;
@@ -459,7 +461,7 @@ function submit_bank_info() {
             closeTimeout: 9000,
         }).open();
     } else {
-        console.log("Bank Data", bank_details);
+        
         // create users account, register default app
 
         var phone_number = bank_details.phone_number;
@@ -492,9 +494,48 @@ function submit_bank_info() {
                 },
                 {
                     text: '<b>I Confirm</b>',
-                    onClick: () => {                         
-                        console.log("Accepted");
+                    onClick: () => {
+                        // register user
+                        app.preloader.show("#6236FF");
 
+                        app.request.promise.post(api_url + "register-app-user.php", {
+                            api_key: api_key,
+                            user_data: JSON.stringify(bank_details),
+                            app_id:app_id
+                        })
+                        .then((reg_status) => {
+                            reg_status = JSON.parse(reg_status.data)
+                            app.preloader.hide();
+                            // console.log("Accout registration status",reg_status);
+
+                            app.notification.create({
+                                icon: '<i class="f7-icons">bell_circle_fill</i>',
+                                title: '<b>My BANK Server Response',
+                                titleRightText: 'now',
+                                subtitle: '',
+                                text: reg_status.message,
+                                closeTimeout: 9000,
+                            }).open();
+
+                            $$("#reset_form").click();
+                
+                        })
+                        .catch((err) => {
+                            app.preloader.hide();
+                            // console.log("Account registration error",err)                
+                            app.dialog.create({
+                                title: "CONNECTION ERROR",
+                                text: 'Server Connection Failed',
+                                buttons: [{
+                                    text: 'Retry',
+                                    onClick: () => {
+                                        reregister();
+                                    }
+                                }],
+                                verticalButtons: false,
+                            }).open();
+                
+                        })                
 
                     }
                 }
@@ -502,10 +543,11 @@ function submit_bank_info() {
             verticalButtons: false,
         }).open();
 
-
-
-
     }
 
+}
 
+// retry register
+function reregister(){
+    submit_bank_info();
 }
