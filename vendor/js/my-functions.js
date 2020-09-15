@@ -59,7 +59,6 @@ function get_app_details() {
 
     }
 }
-
 // get countries
 function app_countries() {
     $$("#show_title").html("Select Your Country To Continue!");
@@ -131,7 +130,6 @@ function app_countries() {
 
 
 }
-
 // set default country for app
 function select_country(country_id) {
     app.preloader.show("#6236FF");
@@ -217,7 +215,6 @@ function get_bank_list_for_select() {
 
     console.log("Running on", app.device.os, "version", app.device.osVersion);
 }
-
 // reload app
 function reload_app() {
     // show app preloader
@@ -225,8 +222,6 @@ function reload_app() {
     // get_bank_list_for_select();
     get_app_details();
 }
-
-
 // load bank data
 function confirm_bank(bank_id) {
     var bank_details = app.form.convertToData('#' + bank_id);
@@ -277,6 +272,22 @@ function confirm_bank(bank_id) {
                             <div class="row">
                                 <div class="col-20">
                                     <i style="margin-top:25px;"
+                                        class="f7-icons">creditcard_fill</i>
+                                </div>
+
+                                <div class="col-80">
+                                    <div class="form-group basic animated">
+                                        <div class="input-wrapper">
+                                            <input type="number" onchange="check_account_number()" onkeyup="check_account_number()" id="account_number" class="form-control"  pattern="[0-9]{12}"  maxlength="12"name="account_number" placeholder="Your Account Number">
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-20">
+                                    <i style="margin-top:25px;"
                                         class="f7-icons">phone_circle_fill</i>
                                 </div>
 
@@ -289,7 +300,7 @@ function confirm_bank(bank_id) {
                                                 </div>
                                                 <div class="col-70">
                                                     <input onclick="show_infor()" type="tel" style="margin-left:-20px;" class="form-control" name="phone_number"
-                                                    placeholder="Phone Number" maxlength="10">
+                                                    placeholder="Your Phone Number" maxlength="10">
                                                     <span class="input-clear-button"></span>
                                                 </div>
                                             </div>
@@ -302,13 +313,13 @@ function confirm_bank(bank_id) {
                             <div class="row">
                                 <div class="col-20">
                                     <i style="margin-top:25px;"
-                                        class="f7-icons">lock_circle_fill</i>
+                                        class="f7-icons">lock_shield_fill</i>
                                 </div>
 
                                 <div class="col-80">
                                     <div class="form-group basic animated">
                                         <div class="input-wrapper">
-                                            <input type="number" class="form-control"  pattern="[0-9]{4}"  maxlength="4" id="smscode" name="new_app_pin" placeholder="New PIN (4 Digits)">
+                                            <input type="number" class="form-control"  pattern="[0-9]{4}"  maxlength="4" id="smscode" name="new_app_pin" placeholder="Create New PIN (4 Digits)">
                                             <span class="input-clear-button"></span>
                                         </div>
                                     </div>
@@ -358,7 +369,6 @@ function confirm_bank(bank_id) {
     }).open();
 
 }
-
 function show_infor() {
     var bank_details = app.form.convertToData('#confirm_bank_info');
     var bank_name = JSON.parse(bank_details.selected_bank_data);
@@ -374,6 +384,24 @@ function show_infor() {
 
 }
 
+// notify user on account info characters
+function check_account_number(){
+    var bank_details = app.form.convertToData('#confirm_bank_info');
+    var acco_len = bank_details.account_number;
+
+    if (acco_len.length>12) {
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'Account Number Error',
+            titleRightText: 'now',
+            subtitle: '',
+            text: 'The account number must be 12 characters only.',
+            closeTimeout: 9000,
+        }).open();
+    }else{
+        app.notification.close()
+    }
+}
 // submit bank info
 function submit_bank_info() {
     var bank_details = app.form.convertToData('#confirm_bank_info');
@@ -381,8 +409,38 @@ function submit_bank_info() {
     var phone_number = bank_details.phone_number;
     var new_app_pin = bank_details.new_app_pin;
     var confirm_new_app_pin = bank_details.confirm_new_app_pin;
+    var acco_len = bank_details.account_number;
 
-    if (phone_number == "") {
+    if (acco_len.length == "") {
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'Account Number Error',
+            titleRightText: 'now',
+            subtitle: '',
+            text: 'Please enter your 12 digit account number.',
+            closeTimeout: 9000,
+        }).open();
+    }else if (acco_len.length<12) {
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'Account Number Error',
+            titleRightText: 'now',
+            subtitle: '',
+            text: 'The account number cannot be less than 12 digits.',
+            closeTimeout: 9000,
+        }).open();
+    }
+    else if (acco_len.length>12) {
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'Account Number Error',
+            titleRightText: 'now',
+            subtitle: '',
+            text: 'The account number must be 12 characters only.',
+            closeTimeout: 9000,
+        }).open();
+    }
+    else if (phone_number == "") {
 
         app.notification.create({
             icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
@@ -546,8 +604,9 @@ function submit_bank_info() {
     }
 
 }
-
 // retry register
 function reregister(){
     submit_bank_info();
 }
+// LOGIN bank user
+
