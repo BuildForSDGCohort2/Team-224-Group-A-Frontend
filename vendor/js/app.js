@@ -2,10 +2,10 @@
 
 var $$ = Dom7;
 
-// const api_url = "https://thewitcart.com/my_bank/";
-// const api_public = "https://thewitcart.com/my_bank/images/";
-const api_url = "http://barnabas/my_bank/";
-const api_public = "http://barnabas/my_bank/images/";
+const api_url = "https://thewitcart.com/my_bank/";
+const api_public = "https://thewitcart.com/my_bank/images/";
+// const api_url = "http://barnabas/my_bank/";
+// const api_public = "http://barnabas/my_bank/images/";
 const api_key = "bmuzoora@gmail.com";
 const app_version = "1.0.0";
 const app_id = localStorage.getItem("app_id");
