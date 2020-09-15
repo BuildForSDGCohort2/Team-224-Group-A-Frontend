@@ -609,4 +609,35 @@ function reregister(){
     submit_bank_info();
 }
 // LOGIN bank user
+function login_user(){
+    var user_pin = app.form.convertToData("#login_user");
+    var app_pin = user_pin.app_pin;
+    
+    if(app_pin.length == ""){
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'PIN Error',
+            titleRightText: 'now',
+            subtitle: '',
+            text: 'App PIN is required.',
+            closeTimeout: 9000,
+        }).open();
+    }else if(app_pin.length<4){
+        app.notification.create({
+            icon: '<i class="f7-icons">exclamationmark_bubble_fill</i>',
+            title: 'PIN Error',
+            titleRightText: 'now',
+            subtitle: '',
+            text: 'Enter your app`s 4 digit pin.',
+            closeTimeout: 9000,
+        }).open();
+    }else{
+        // show app preloader
+        app.preloader.show("#6236FF");
+        app.notification.close();
+        console.log("APP PIN", app_pin, "app_id", app_id);
 
+        
+
+    }
+}
