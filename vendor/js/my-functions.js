@@ -635,9 +635,48 @@ function login_user(){
         // show app preloader
         app.preloader.show("#6236FF");
         app.notification.close();
-        console.log("APP PIN", app_pin, "app_id", app_id);
-
-        
-
+        app.request.promise.post(api_url + "login-app-user.php", {
+            api_key: api_key,
+            app_pin: app_pin,
+            app_id:app_id
+        })
+        .then((login) => {
+            app.preloader.hide();
+            login_status = JSON.parse(login.data)
+            if(login_status.statusCode){
+                app.notification.create({
+                    icon: '<i class="f7-icons">exclamationmark_shield_fill</i>',
+                    title: 'Login Response',
+                    titleRightText: 'now',
+                    subtitle: '',
+                    text: login_status.message,
+                    closeTimeout: 9000,
+                }).open();
+            }else{
+                console.log("Pin accepted", login_status)
+            }
+        })
+        .catch((err) => {
+            app.preloader.hide();               
+            app.dialog.create({
+                title: "CONNECTION ERROR",
+                text: 'Server Connection Failed',
+                buttons: [{
+                    text: 'Retry',
+                    onClick: () => {
+                        relogin();
+                    }
+                },{
+                    text: 'Ok',
+                    close:true,
+                }],
+                verticalButtons: false,
+            }).open();
+        })
     }
+}
+
+// re login 
+function relogin(){
+    login_user();
 }
