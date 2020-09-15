@@ -641,9 +641,9 @@ function login_user(){
             app_id:app_id
         })
         .then((login) => {
-            app.preloader.hide();
             login_status = JSON.parse(login.data)
             if(login_status.statusCode){
+                app.preloader.hide();
                 app.notification.create({
                     icon: '<i class="f7-icons">exclamationmark_shield_fill</i>',
                     title: 'Login Response',
@@ -653,7 +653,20 @@ function login_user(){
                     closeTimeout: 9000,
                 }).open();
             }else{
-                console.log("Pin accepted", login_status)
+                document.querySelector("#smscode").value = "";
+                app.notification.create({
+                    icon: '<i class="f7-icons">exclamationmark_shield_fill</i>',
+                    title: 'Login Response',
+                    titleRightText: 'now',
+                    subtitle: '',
+                    text: login_status.message,
+                    closeTimeout: 9000,
+                }).open();
+                // save user data
+                localStorage.setItem("user_data",JSON.stringify(login_status.user_data));
+                // navigate to dashboard
+                var rout = app.views.main.router;
+                rout.navigate('/home/');
             }
         })
         .catch((err) => {

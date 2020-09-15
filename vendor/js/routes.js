@@ -13,21 +13,16 @@ var routes = [
         },
     },
     {
-        name: "Get Started",
-        path: "/first-time/",
-        url: "/pages/first_time/index.html",
-        on: {
-            pageInit: function(){
-                app_countries();
-            }
-        }
-    },
-    {
         name: "home",
         path: "/home/",
         url: "/pages/home.html",
         options: {
             transition: 'f7-circle',
         },
+        on: {
+            pageAfterIn(e, page) {
+              page.router.clearPreviousHistory();
+            },
+        }
     }
 ]
