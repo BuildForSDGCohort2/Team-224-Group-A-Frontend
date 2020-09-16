@@ -6,7 +6,7 @@ var routes = [
         path: "/index/",
         url: "/index.html",
         on: {
-            pageInit: function (e, page) {
+            pageInit: (e, page)=>{
                 console.log("Index Page Loading...", page);
                 app.preloader.hide();
             }
@@ -20,7 +20,10 @@ var routes = [
             transition: 'f7-circle',
         },
         on: {
-            pageAfterIn(e, page) {
+            pageInit:()=>{
+                load_initial_data();
+            },
+            pageAfterIn:(e, page)=>{
               page.router.clearPreviousHistory();
             },
         }

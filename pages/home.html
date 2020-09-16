@@ -3,69 +3,206 @@
         <div class="navbar-bg"></div>
 
         <div class="navbar-inner" style="background-color: #6236FF; color: white;">
+            <div class="left"></div>
             <div class="title" style="bottom: 0px !important">
                 <b>MY BANK</b>
             </div>
             <div class="right">
-                <i class="f7-icons">bell_circle</i> &nbsp;
+                <i class="f7-icons panel-open" data-panel=".panel-right">bars</i> &nbsp;
             </div>
         </div>
+
+        <!-- app side bar -->
+        <div class="panel panel-right panel-right-1 panel-cover panel-init">
+            <div class="panelbox panelbox-left">
+                <!-- profile box -->
+                <div class="profileBox pt-2 pb-2">
+                    <div class="image-wrapper">
+                        <img src="assets/img/user.png" alt="image" class="imaged  w36">
+                    </div>
+                    <div class="in" id="show_bank">
+                        <div class="preloader pull-right"></div>
+                    </div>
+                </div>
+                <!-- profile box -->
+                <!-- balance -->
+                <div class="sidebar-balance">
+                    <div class="listview-title">Balance</div>
+                    <div class="in">
+                        <h1 class="amount total_amount"><div class="preloader"></div></h1>
+                    </div>
+                </div>
+                <!-- * balance -->
+                <!-- action group -->
+                <div class="action-group">
+                    <a href="#" class="action-button">
+                        <div class="in">
+                            <div class="iconbox">
+                                <i class="f7-icons">plus</i>
+                            </div>
+                            Add Account
+                        </div>
+                    </a>
+                    <a href="#" class="action-button">
+                        <div class="in">
+                            <div class="iconbox">
+                                <i class="f7-icons">money_dollar_circle</i>
+                            </div>
+                            Pay Bills
+                        </div>
+                    </a>
+                    <a href="#" class="action-button">
+                        <div class="in">
+                            <div class="iconbox">
+                                <i class="f7-icons">bag_badge_plus</i>
+                            </div>
+                            Shopping
+                        </div>
+                    </a>
+                </div>
+                <!-- * action group -->
+
+                <!-- others -->
+                <div class="listview-title mt-1">Other Options</div>
+                <ul class="listview flush transparent no-line image-listview">
+                    <li>
+                        <a href="#" class="item">
+                            <div class="icon-box bg-primary">
+                                <i class="f7-icons">gear_alt</i>
+                            </div>
+                            <div class="in">
+                                Settings
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="item">
+                            <div class="icon-box bg-primary">
+                                <i class="f7-icons">ellipses_bubble</i>
+                            </div>
+                            <div class="in">
+                                Support
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="item">
+                            <div class="icon-box bg-primary">
+                                <i class="f7-icons">question_circle_fill</i>
+                            </div>
+                            <div class="in">
+                                About
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="item">
+                            <div class="icon-box bg-primary">
+                                <i class="f7-icons">square_arrow_left</i>
+                            </div>
+                            <div class="in">
+                                Log out
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- * others -->
+
+            </div>
+        </div>
+
+        <!-- end app side bar -->
+
     </div>
 
     <div class="page-content">
-         <div class="section wallet-card-section pt-1">
-             <div class="wallet-card">
-                 <!-- Balance -->
-                 <div class="balance">
-                     <div class="left">
-                         <span class="title">Total Balance</span>
-                         <h1 class="total">$ 2,562.50</h1>
-                     </div>
-                     <div class="right">
-                         <a href="#" class="button" data-toggle="modal" data-target="#depositActionSheet">
+        <!-- wallet -->
+        <div class="section wallet-card-section pt-1">
+            <div class="wallet-card">
+                <!-- Balance -->
+                <div class="balance">
+                    <div class="left">
+                        <span class="title">Total Balance</span>
+                        <h4 class="total total_amount"><div class="preloader"></div></h4>
+                    </div>
+                    <div class="right">
+                        <a href="#" class="button">
                             <i class="f7-icons">plus</i>
-                         </a>
-                     </div>
-                 </div>
-                 <!-- * Balance -->
-                 <!-- Wallet Footer -->
-                 <div class="wallet-footer">
-                     <div class="item">
-                         <a href="#" data-toggle="modal" data-target="#withdrawActionSheet">
-                             <div class="icon-wrapper bg-danger">
+                        </a>
+                    </div>
+                </div>
+                <!-- * Balance -->
+                <!-- Wallet Footer -->
+                <div class="wallet-footer">
+                    <div class="item">
+                        <a href="#">
+                            <div class="icon-wrapper bg-primary text-warning">
                                 <i class="f7-icons">arrow_down_circle_fill</i>
-                             </div>
-                             <strong>Withdraw</strong>
-                         </a>
-                     </div>
-                     <div class="item">
-                         <a href="#" data-toggle="modal" data-target="#sendActionSheet">
-                             <div class="icon-wrapper">
+                            </div>
+                            <strong>Withdraw</strong>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <div class="icon-wrapper text-warning">
                                 <i class="f7-icons">arrow_right_circle_fill</i>
-                             </div>
-                             <strong>Send</strong>
-                         </a>
-                     </div>
-                     <div class="item">
-                         <a href="app-cards.html">
-                             <div class="icon-wrapper bg-success">
+                            </div>
+                            <strong>Send</strong>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="app-cards.html">
+                            <div class="icon-wrapper bg-primary text-warning">
                                 <i class="f7-icons">creditcard</i>
-                             </div>
-                             <strong>Accounts</strong>
-                         </a>
-                     </div>
-                     <div class="item">
-                         <a href="#" data-toggle="modal" data-target="#exchangeActionSheet">
-                             <div class="icon-wrapper bg-warning">
+                            </div>
+                            <strong>Accounts</strong>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <div class="icon-wrapper bg-primary text-warning">
                                 <i class="f7-icons">arrow_up_arrow_down_circle_fill</i>
-                             </div>
-                             <strong>Exchange</strong>
-                         </a>
-                     </div>
+                            </div>
+                            <strong>Request</strong>
+                        </a>
+                    </div>
 
-                 </div>
-                 <!-- * Wallet Footer -->
-             </div>
-         </div>
+                </div>
+                <!-- * Wallet Footer -->
+            </div>
+        </div>
+        <!-- end wallet -->
+
+        <div class="section">
+            <div class="row mt-2">
+                <div class="col-6">
+                    <div class="stat-box text-center bg-primary">
+                        <div class="title text-white">Buy Airtime</div>
+                        <div class="value text-warning"><i class="f7-icons">device_phone_portrait</i></div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="stat-box text-center bg-primary">
+                        <div class="title text-white">Pay Bills</div>
+                        <div class="value text-warning"><i class="f7-icons">money_dollar_circle</i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <div class="stat-box text-center bg-primary">
+                        <div class="title text-white">Mini Statements</div>
+                        <div class="value text-warning"><i class="f7-icons">doc_plaintext</i></div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="stat-box text-center bg-primary">
+                        <div class="title text-white">My Transactions</div>
+                        <div class="value text-warning"><i class="f7-icons">doc_text_search</i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- * Stats -->
     </div>
 </div>

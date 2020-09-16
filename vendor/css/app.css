@@ -2,6 +2,14 @@ body {
     font-family: arial, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
 }
 
+:root {
+    --f7-toast-bg-color: #6236FF !important;
+    --f7-toast-text-color: #6236FF;
+    --f7-toast-font-size: 14px;
+    --f7-toast-icon-size: 48px;
+    --f7-toast-max-width: 568px;
+  }
+
 @font-face {
     font-family: 'Framework7 Icons';
     font-style: normal;
@@ -37,6 +45,10 @@ body {
 
 .loader .link {
     color: greenyellow;
+}
+
+.total{
+    font-size: 25px!important;
 }
 
 .loader .turn_white {

@@ -691,6 +691,49 @@ function login_user(){
 }
 
 // re login 
-function relogin(){
+var relogin = ()=>{
     login_user();
+}
+
+// load logged in user data
+var load_initial_data = ()=>{
+    var user_data = JSON.parse(localStorage.getItem("user_data"));
+    var user_info = user_data.user_info;
+    var bank_info = user_data.bank_info;
+    $$("#show_bank").html(`
+    <strong>${user_info.first_name} ${user_info.last_name}</strong>
+    <div class="text-muted">${bank_info.bank_name}</div>
+    `);
+
+    // get bank account details.
+    app.request.promise.post(api_url + "get-account-data.php", {
+        api_key: api_key,
+        user_id: user_info.id,
+        bank_id: bank_info.id,
+        country_id:user_info.country_id
+    })
+    .then((bank)=>{
+        var accoun_info = JSON.parse(bank.data);
+        console.log(accoun_info)
+        app.toast.create({
+            text: `<i class="f7-icons" style="font-size:15px;">bubble_middle_bottom_fill</i> ${accoun_info.message}`,
+            closeTimeout: 4000,
+        }).open();
+
+        $$('.total_amount').html(`${accoun_info.account_data.currency.symbol} ${(parseInt(accoun_info.account_data.amount)).toLocaleString('en-US')}`)
+
+        
+    })
+    .catch((err)=>{
+        
+        app.toast.create({
+            text: '<i class="f7-icons" style="font-size:15px;">bubble_middle_bottom_fill</i> Connection problem. Retrying...',
+        }).open();
+        
+        document.setTimeout(10000, reloaddata());
+    })
+}
+
+var reloaddata = ()=>{
+    load_initial_data()
 }
