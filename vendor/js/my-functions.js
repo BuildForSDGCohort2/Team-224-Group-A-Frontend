@@ -6,6 +6,7 @@ window.onload = ()=>{
     try {
         var app_details = JSON.parse(localStorage.getItem("app_id"));
         console.log("App Id", app_details);
+        app.preloader.hide();
     } catch (err) {
         // console.log("Getting App Details from Server")
 
