@@ -4,8 +4,8 @@ window.onload = ()=>{
 
     // first try to get details from localstorage
     try {
-        var app_details = JSON.parse(localStorage.getItem("app_details"));
-        console.log("App Id", app_details.app_id);
+        var app_details = JSON.parse(localStorage.getItem("app_id"));
+        console.log("App Id", app_details);
     } catch (err) {
         // console.log("Getting App Details from Server")
 
@@ -25,11 +25,6 @@ window.onload = ()=>{
 
                         // check if app has user registered$
                         $$('#first-time').click();
-
-                        // show countries  show_countries
-
-
-
 
                     } else {
                         console.log("App details code 201", app_data);
