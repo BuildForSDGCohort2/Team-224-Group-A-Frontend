@@ -1,5 +1,5 @@
 // check for app details
-function get_app_details() {
+window.onload = ()=>{
     // console.log("Getting app details");
 
     // first try to get details from localstorage
