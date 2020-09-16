@@ -716,8 +716,8 @@ var load_initial_data = ()=>{
             closeTimeout: 4000,
         }).open();
 
-        $$('.total_amount').html(`${accoun_info.account_data.currency.symbol} ${(parseInt(accoun_info.account_data.amount)).toLocaleString('en-US')}`)
-
+        $$('.total_amount').html(`${accoun_info.account_data.currency.symbol} ${(parseInt(accoun_info.account_data.amount)).toLocaleString('en-US')}`);
+        app.preloader.hide();
         
     })
     .catch((err)=>{
