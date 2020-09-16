@@ -31,6 +31,12 @@ var mainView = app.views.create(".view-main", {
             // show app preloader
             app.preloader.show("#6236FF");
 
+            var loggedin = localStorage.getItem("loggedIn");
+            if (loggedin == 1) {
+                var rout = app.views.main.router;
+                rout.navigate('/home/');
+            }
+
             // create bank_list to check
             try {
                 // get bank list to show

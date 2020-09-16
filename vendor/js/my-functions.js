@@ -663,7 +663,7 @@ function login_user(){
                     closeTimeout: 9000,
                 }).open();
                 // save user data
-                // localStorage.setItem("user_data",JSON.stringify(login_status.user_data));
+                localStorage.setItem("user_data",JSON.stringify(login_status.user_data));
                 localStorage.setItem("loggedIn",1);
                 // navigate to dashboard
                 var rout = app.views.main.router;
